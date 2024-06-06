@@ -1,25 +1,113 @@
 ---
 title: Commander
-category: Concurrency
+category: Behavioral
 language: en
 tag:
- - Cloud distributed
+    - Cloud distributed
+    - Microservices
+    - Transactions
 ---
+
+## Also known as
+
+* Distributed Transaction Commander
+* Transaction Coordinator
 
 ## Intent
 
-> Used to handle all problems that can be encountered when doing distributed transactions.
-
-## Class diagram
-![alt text](./etc/commander.urm.png "Commander class diagram")
-
-## Applicability
-This pattern can be used when we need to make commits into 2 (or more) databases to complete transaction, which cannot be done atomically and can thereby create problems.
+The intent of the Commander pattern in the context of distributed transactions is to manage and coordinate complex transactions across multiple distributed components or services, ensuring consistency and integrity of the overall transaction. It encapsulates transaction commands and coordination logic, facilitating the implementation of distributed transaction protocols like two-phase commit or Saga.
 
 ## Explanation
-Handling distributed transactions can be tricky, but if we choose to not handle it carefully, there could be unwanted consequences. Say, we have an e-commerce website which has a Payment microservice and a Shipping microservice. If the shipping is available currently but payment service is not up, or vice versa, how would we deal with it after having already received the order from the user?
-We need a mechanism in place which can handle these kinds of situations. We have to direct the order to either one of the services (in this example, shipping) and then add the order into the database of the other service (in this example, payment), since two databases cannot be updated atomically. If currently unable to do it, there should be a queue where this request can be queued, and there has to be a mechanism which allows for a failure in the queueing as well. All this needs to be done by constant retries while ensuring idempotence (even if the request is made several times, the change should only be applied once) by a commander class, to reach a state of eventual consistency.
+
+Real-world example
+
+> Imagine organizing a large international music festival where various bands from around the world are scheduled to perform. Each band's arrival, soundcheck, and performance are like individual transactions in a distributed system. The festival organizer acts as the "Commander," coordinating these transactions to ensure that if a band's flight is delayed (akin to a transaction failure), there's a backup plan, such as rescheduling or swapping time slots with another band (compensating actions), to keep the overall schedule intact. This setup mirrors the Commander pattern in distributed transactions, where various components must be coordinated to achieve a successful outcome despite individual failures.
+
+In plain words
+
+> The Commander pattern turns a request into a stand-alone object, allowing for the parameterization of commands, queueing of actions, and the implementation of undo operations.
+
+**Programmatic Example**
+
+Managing transactions across different services in a distributed system, such as an e-commerce platform with separate `Payment` and `Shipping` microservices, requires careful coordination to avoid issues. When a user places an order but one service (e.g., `Payment`) is unavailable while the other (e.g., `Shipping`) is ready, we need a robust solution to handle this discrepancy.
+
+A strategy to address this involves using a `Commander` component that orchestrates the process. Initially, the order is processed by the available service (`Shipping` in this case). The `Commander` then attempts to synchronize the order with the currently unavailable service (`Payment`) by storing the order details in a database or queueing it for future processing. This queueing system must also account for possible failures in adding requests to the queue.
+
+The `Commander` repeatedly tries to process the queued orders to ensure both services eventually reflect the same transaction data. This process involves ensuring idempotence, meaning that even if the same order synchronization request is made multiple times, it will only be executed once, preventing duplicate transactions. The goal is to achieve eventual consistency across services, where all systems are synchronized over time despite initial failures or delays.
+
+Here's a simplified example of how the `Commander` class is used in the `AppAllCases` class:
+
+```java
+public class AppAllCases {
+  // ... other methods ...
+
+  // Shipping Database Fail Cases
+  void itemUnavailableCase() {
+    var ps = new PaymentService(new PaymentDatabase());
+    var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
+    var ms = new MessagingService(new MessagingDatabase());
+    var eh = new EmployeeHandle(new EmployeeDatabase());
+    var qdb = new QueueDatabase();
+    // Create a Commander instance
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
+    var user = new User("Jim", "ABCD");
+    var order = new Order(user, "book", 10f);
+    // Use the Commander instance to place an order
+    c.placeOrder(order);
+  }
+
+  // ... other methods ...
+}
+```
+
+In the `itemUnavailableCase` method, a `Commander` instance is created with the respective services and their databases. Then, a `User` and an `Order` are created, and the `placeOrder` method of the `Commander` instance is called with the order. This triggers the process of placing the order and handling any failures according to the Commander pattern.
+
+The `Commander` class encapsulates the logic for handling the order placement and any potential failures. This separation of concerns makes the code easier to understand and maintain, and it allows for the reuse of the `Commander` class in different parts of the application.  In a real-world application, the `Commander` class would be more complex and would include additional logic for handling different types of failures, retrying failed operations, and coordinating transactions across multiple services.
+
+Here is the output from executing the `itemUnavailableCase`:
+
+```
+09:10:13.894 [main] DEBUG com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Error in creating shipping request..
+09:10:13.896 [main] INFO com.iluwatar.commander.Commander -- This item is currently unavailable. We will inform you as soon as the item becomes available again.
+09:10:13.896 [main] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Item book unavailable, trying to add problem to employee handle..
+09:10:13.897 [Thread-0] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Added order to employee database
+```
+
+## Applicability
+
+Use the Commander pattern for distributed transactions when:
+
+* You need to ensure data consistency across distributed services in the event of partial system failures.
+* Transactions span multiple microservices or distributed components requiring coordinated commit or rollback.
+* You are implementing long-lived transactions requiring compensating actions for rollback.
+
+## Known Uses
+
+* Two-Phase Commit (2PC) Protocols: Coordinating commit or rollback across distributed databases or services.
+* Saga Pattern Implementations: Managing long-lived business processes that span multiple microservices, with each step having a compensating action for rollback.
+* Distributed Transactions in Microservices Architecture: Coordinating complex operations across microservices while maintaining data integrity and consistency.
+
+## Consequences
+
+Benefits:
+
+* Provides a clear mechanism for managing complex distributed transactions, enhancing system reliability.
+* Enables the implementation of compensating transactions, which are crucial for maintaining consistency in long-lived transactions.
+* Facilitates the integration of heterogeneous systems within a transactional context.
+
+Trade-offs:
+
+* Increases complexity, especially in failure scenarios, due to the need for coordinated rollback mechanisms.
+* Potentially impacts performance due to the overhead of coordination and consistency checks.
+* Saga-based implementations can lead to increased complexity in understanding the overall business process flow.
+
+## Related Patterns
+
+* [Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
 
 ## Credits
 
-* [Distributed Transactions: The Icebergs of Microservices](https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/)
+* [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/4aATcRe)
+* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)
+* [Microservices Patterns: With examples in Java](https://amzn.to/4axjnYW)
+* [Distributed Transactions: The Icebergs of Microservices (Graham Lea)](https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/)

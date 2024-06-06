@@ -31,11 +31,7 @@ import lombok.RequiredArgsConstructor;
  * ElfWeapon.
  * 精灵武器
  */
-@RequiredArgsConstructor
-@Getter
-public class ElfWeapon implements Weapon {
-
-  private final WeaponType weaponType;
+public record ElfWeapon(WeaponType weaponType) implements Weapon {
 
   @Override
   public String toString() {

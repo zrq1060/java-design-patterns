@@ -24,6 +24,8 @@
  */
 package com.iluwatar.mediator;
 
+import lombok.Getter;
+
 /**
  * Action enumeration.
  */
@@ -40,15 +42,12 @@ public enum Action {
   NONE("", "");
 
   private final String title;
+  @Getter
   private final String description;
 
   Action(String title, String description) {
     this.title = title;
     this.description = description;
-  }
-
-  public String getDescription() {
-    return description;
   }
 
   public String toString() {

@@ -25,10 +25,12 @@
 package com.iluwatar.chain;
 
 import java.util.Objects;
+import lombok.Getter;
 
 /**
  * Request.
  */
+@Getter
 public class Request {
 
   /**
@@ -64,42 +66,11 @@ public class Request {
   }
 
   /**
-   * Get a description of the request.
-   * 获取请求的描述。
-   *
-   * @return A human readable description of the request
-   */
-  public String getRequestDescription() {
-    return requestDescription;
-  }
-
-  /**
-   * Get the type of this request, used by each person in the chain of command to see if they should
-   * or can handle this particular request.
-   * 获取此请求的类型，命令链中的每个人使用该类型，以查看他们是否应该或能够处理此特定请求。
-   *
-   * @return The request type
-   */
-  public RequestType getRequestType() {
-    return requestType;
-  }
-
-  /**
    * Mark the request as handled.
    * 将请求标记为已处理。
    */
   public void markHandled() {
     this.handled = true;
-  }
-
-  /**
-   * Indicates if this request is handled or not.
-   * 指示是否处理此请求。
-   *
-   * @return <tt>true</tt> when the request is handled, <tt>false</tt> if not
-   */
-  public boolean isHandled() {
-    return this.handled;
   }
 
   @Override

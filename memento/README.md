@@ -3,19 +3,24 @@ title: Memento
 category: Behavioral
 language: en
 tag:
- - Gang of Four
+    - Encapsulation
+    - Gang of Four
+    - Memory management
+    - Object composition
+    - State tracking
+    - Undo
 ---
 
 ## Also known as
 
-Token
+* Snapshot
+* Token
 
 快照
 
 ## Intent
 
-Without violating encapsulation, capture and externalize an object's internal state so that the 
-object can be restored to this state later.
+Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
 在不违反封装的情况下，捕获并外部化对象的内部状态，以便稍后可以将对象恢复到此状态。
 
@@ -23,26 +28,19 @@ object can be restored to this state later.
 
 Real-world example
 
-> We are working on an astrology application where we need to analyze star properties over time. We 
-> are creating snapshots of star states using the Memento pattern.
-> 
-> 我们正在研究一个占星学应用程序，我们需要分析恒星随时间的特性。我们正在使用Memento模式创建恒星状态的快照。
+> Imagine a text editor application that allows users to write and edit documents. The text editor uses the Memento design pattern to implement its undo and redo functionality. Each time a user makes a change to the document, the editor creates a snapshot (memento) of the current state of the document. These snapshots are stored in a history list. When the user clicks the undo button, the editor restores the document to the state saved in the most recent memento. This process allows users to revert to previous versions of their document without exposing or altering the internal data structures of the editor.
 
 In plain words
 
-> Memento pattern captures object internal state making it easy to store and restore objects in any 
-> point of time.
-> 
-> Memento模式捕获对象的内部状态，便于在任何时间点存储和恢复对象。
+> Memento pattern captures object internal state making it easy to store and restore objects in any point of time.
 
 Wikipedia says
 
-> The memento pattern is a software design pattern that provides the ability to restore an object to 
-> its previous state (undo via rollback).
-> 
-> memento模式是一种软件设计模式，它能够将对象恢复到以前的状态(通过回滚撤消)。
+> The memento pattern is a software design pattern that provides the ability to restore an object to its previous state (undo via rollback).
 
 **Programmatic Example**
+
+We are working on an astrology application where we need to analyze star properties over time. We are creating snapshots of star states using the Memento pattern.
 
 Let's first define the types of stars we are capable to handle.
 
@@ -55,12 +53,11 @@ public enum StarType {
   WHITE_DWARF("white dwarf"),
   SUPERNOVA("supernova"),
   DEAD("dead star");
-  ...
+  // ...
 }
 ```
 
-Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
-need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
+Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
 接下来，让我们直入主题。这是Star类以及我们需要操作的备忘录。特别要注意getMemento和setMemento方法。
 
@@ -124,7 +121,7 @@ public class Star {
         private int massTons;
 
         // setters and getters ->
-    ...
+        // ...
     }
 }
 ```
@@ -134,7 +131,9 @@ And finally here's how we use the mementos to store and restore star states.
 最后是我们如何使用这些备忘录来存储和恢复星州。
 
 ```java
-    var states = new Stack<>();
+public static void main(String[] args) {
+    var states = new Stack<StarMemento>();
+
     var star = new Star(StarType.SUN, 10000000, 500000);
     LOGGER.info(star.toString());
     states.add(star.getMemento());
@@ -149,29 +148,26 @@ And finally here's how we use the mementos to store and restore star states.
     states.add(star.getMemento());
     star.timePasses();
     LOGGER.info(star.toString());
-    while (states.size() > 0) {
-      star.setMemento(states.pop());
-      LOGGER.info(star.toString());
+    while (!states.isEmpty()) {
+        star.setMemento(states.pop());
+        LOGGER.info(star.toString());
     }
+}
 ```
 
 Program output:
 
 ```
-sun age: 10000000 years mass: 500000 tons
-red giant age: 20000000 years mass: 4000000 tons
-white dwarf age: 40000000 years mass: 32000000 tons
-supernova age: 80000000 years mass: 256000000 tons
-dead star age: 160000000 years mass: 2048000000 tons
-supernova age: 80000000 years mass: 256000000 tons
-white dwarf age: 40000000 years mass: 32000000 tons
-red giant age: 20000000 years mass: 4000000 tons
-sun age: 10000000 years mass: 500000 tons
+14:09:15.878 [main] INFO com.iluwatar.memento.App -- sun age: 10000000 years mass: 500000 tons
+14:09:15.880 [main] INFO com.iluwatar.memento.App -- red giant age: 20000000 years mass: 4000000 tons
+14:09:15.880 [main] INFO com.iluwatar.memento.App -- white dwarf age: 40000000 years mass: 32000000 tons
+14:09:15.880 [main] INFO com.iluwatar.memento.App -- supernova age: 80000000 years mass: 256000000 tons
+14:09:15.880 [main] INFO com.iluwatar.memento.App -- dead star age: 160000000 years mass: 2048000000 tons
+14:09:15.880 [main] INFO com.iluwatar.memento.App -- supernova age: 80000000 years mass: 256000000 tons
+14:09:15.880 [main] INFO com.iluwatar.memento.App -- white dwarf age: 40000000 years mass: 32000000 tons
+14:09:15.881 [main] INFO com.iluwatar.memento.App -- red giant age: 20000000 years mass: 4000000 tons
+14:09:15.881 [main] INFO com.iluwatar.memento.App -- sun age: 10000000 years mass: 500000 tons
 ```
-
-## Class diagram
-
-![alt text](./etc/memento.png "Memento")
 
 ## Applicability
 适用性
@@ -181,17 +177,32 @@ Use the Memento pattern when
 以下情况使用备忘录模式
 
 * A snapshot of an object's state must be saved so that it can be restored to that state later, and
-* 必须保存对象状态的快照，以便稍后可以将其恢复到该状态
-* A direct interface to obtaining the state would expose implementation details and break the 
-object's encapsulation
-* 获取状态的直接接口将公开实现细节，并破坏对象的封装
+* A direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
 ## Known uses
 已知使用
 
-* [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
+* Java Util Package: Various classes in the Java Util Package, such as java.util.Date and java.util.Calendar, can be reverted to previous states using similar principles, though not implemented directly as the Memento Pattern.
+* Undo mechanisms in software: Text editors and graphic editors often use this pattern to implement undo actions.
+
+## Consequences
+
+Benefits:
+
+* Preserves encapsulation boundaries.
+* Simplifies the originator by removing the need to manage version history or undo functionality directly.
+
+Trade-offs:
+
+* Can be expensive in terms of memory if a large number of states are saved.
+* Care must be taken to manage the lifecycle of mementos to avoid memory leaks.
+
+## Related Patterns
+
+* [Command](https://java-design-patterns.com/patterns/command/): Often used together; commands store state for undoing operations in mementos.
+* [Prototype](https://java-design-patterns.com/patterns/prototype/): Mementos may use prototyping to store the state.
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

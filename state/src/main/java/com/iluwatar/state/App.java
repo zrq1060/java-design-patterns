@@ -49,6 +49,5 @@ public class App {
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
-
   }
 }

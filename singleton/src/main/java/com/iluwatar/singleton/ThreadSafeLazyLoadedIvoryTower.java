@@ -54,9 +54,7 @@ public final class ThreadSafeLazyLoadedIvoryTower {
    * 直到第一次调用方法时，才会创建实例。
    *
    * @return an instance of the class.
-   */>>>>>>> master
-58
-
+   */
   public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
     if (instance == null) {
       instance = new ThreadSafeLazyLoadedIvoryTower();

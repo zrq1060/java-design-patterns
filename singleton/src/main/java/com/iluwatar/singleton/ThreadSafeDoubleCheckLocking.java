@@ -31,7 +31,6 @@ package com.iluwatar.singleton;
  *
  * <p>Broken under Java 1.4.</p>
  *
- * @author mortezaadi@gmail.com
  */
 public final class ThreadSafeDoubleCheckLocking {
   /**
@@ -63,7 +62,7 @@ public final class ThreadSafeDoubleCheckLocking {
     // Check if singleton instance is initialized.
     // If it is initialized then we can return the instance.
     if (result == null) {
-      // It is not initialized but we cannot be sure because some other thread might have
+      // It is not initialized, but we cannot be sure because some other thread might have
       // initialized it in the meanwhile.
       // 它没有初始化，但我们不能确定，因为其他线程可能已经在同时初始化了它。
       // So to make sure we need to lock on an object to get mutual exclusion.
@@ -78,7 +77,7 @@ public final class ThreadSafeDoubleCheckLocking {
         // 如果它已经初始化，那么我们可以返回先前创建的实例，就像先前的null检查一样。
         result = instance;
         if (result == null) {
-          // The instance is still not initialized so we can safely
+          // The instance is still not initialized, so we can safely
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
           // 实例仍然没有初始化，所以我们可以安全地(没有其他线程可以进入这个区域)创建一个实例，使它成为我们的单例实例。
