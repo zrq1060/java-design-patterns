@@ -1,25 +1,24 @@
 ---
-title: Mediator
+title: "Mediator Pattern in Java: Simplifying Object Communications in Complex Systems"
+shortTitle: Mediator
+description: "Learn how the Mediator Design Pattern reduces complexity in object communication and improves system maintainability with a centralized mediator in Java. Explore examples and implementation."
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Gang Of Four
-    - Messaging
-    - Object composition
+  - Decoupling
+  - Gang Of Four
+  - Messaging
+  - Object composition
 ---
 
 ## Also known as
 
 * Controller
 
-## Intent
+## Intent of Mediator Design Pattern
 
 The Mediator design pattern is intended to reduce the complexity of communication between multiple objects or classes in a system. It achieves this by providing a centralized mediator class that handles the interactions between different classes, thus reducing their direct dependencies on each other.
-
-定义一个对象来封装一组对象如何交互。Mediator通过防止对象显式地相互引用来促进松耦合，并且它允许您独立地改变它们的交互。
-
-## Explanation
+## Detailed Explanation of Mediator Pattern with Real-World Examples
 
 Real-world example
 
@@ -33,9 +32,9 @@ Wikipedia says
 
 > In software engineering, the mediator pattern defines an object that encapsulates how a set of  objects interact. This pattern is considered to be a behavioral pattern due to the way it can  alter the program's running behavior. In object-oriented programming, programs often consist of  many classes. Business logic and computation are distributed among these classes. However, as  more classes are added to a program, especially during maintenance and/or refactoring, the  problem of communication between these classes may become more complex. This makes the program  harder to read and maintain. Furthermore, it can become difficult to change the program, since  any change may affect code in several other classes. With the mediator pattern, communication  between objects is encapsulated within a mediator object. Objects no longer communicate directly  with each other, but instead communicate through the mediator. This reduces the dependencies  between communicating objects, thereby reducing coupling.
 
-**Programmatic Example**
+## Programmatic Example of Mediator Pattern in Java
 
-In this example, the mediator encapsulates how a set of objects interact. Instead of referring to each other directly they use the mediator interface.
+In this example, the mediator encapsulates how a set of objects interact. Instead of referring to each other directly, they use the mediator interface.
 
 The party members `Rogue`, `Wizard`, `Hobbit`, and `Hunter` all inherit from the `PartyMemberBase`implementing the `PartyMember` interface.
 
@@ -184,12 +183,11 @@ Here's the console output from running the example.
 14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue arrives for dinner
 ```
 
-## Class diagram
+## Detailed Explanation of Mediator Pattern with Real-World Examples
 
 ![Mediator](./etc/mediator_1.png "Mediator")
 
-## Applicability
-应用
+## When to Use the Mediator Pattern in Java
 
 Use the Mediator pattern when
 以下情况使用中介者模式
@@ -201,7 +199,7 @@ Use the Mediator pattern when
 * A behavior that's distributed between several classes should be customizable without a lot of subclassing
 * 分布在多个类之间的行为应该是可定制的，无需大量子类化
 
-## Known uses
+## Real-World Applications of Mediator Pattern in Java
 
 * All scheduleXXX() methods of [java.util.Timer](http://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
 * [java.util.concurrent.Executor#execute()](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html#execute-java.lang.Runnable-)
@@ -211,7 +209,7 @@ Use the Mediator pattern when
 * Java Message Service (JMS) uses mediators to handle message exchanges between clients and servers.
 * JavaBeans property change support class (java.beans.PropertyChangeSupport) acts as a mediator by handling communication between beans regarding property changes.
 
-## Consequences
+## Benefits and Trade-offs of Mediator Pattern
 
 Benefits:
 
@@ -222,13 +220,13 @@ Trade-offs:
 
 * Mediator can become a god object coupled with all classes in the system, gaining too much responsibility and complexity.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Often used together, where the mediator pattern can use the observer pattern to notify various objects about state changes. Mediators effectively act as a channel of communication managed by an observer.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Mediator simplifies communication between components, similar to how a facade simplifies a subsystem interface, but a mediator’s colleagues can communicate back to the mediator.
 * [Command](https://java-design-patterns.com/patterns/command/): Commands can be mediated as they are dispatched to their receivers, encapsulating a request as an object.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
