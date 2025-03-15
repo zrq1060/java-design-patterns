@@ -24,7 +24,6 @@
  */
 package com.iluwatar.interpreter;
 
-import java.util.Arrays;
 import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
 

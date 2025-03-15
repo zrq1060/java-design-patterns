@@ -18,6 +18,7 @@ tag:
 ## Intent of Mediator Design Pattern
 
 The Mediator design pattern is intended to reduce the complexity of communication between multiple objects or classes in a system. It achieves this by providing a centralized mediator class that handles the interactions between different classes, thus reducing their direct dependencies on each other.
+
 ## Detailed Explanation of Mediator Pattern with Real-World Examples
 
 Real-world example

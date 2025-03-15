@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class Wizard {
+
   // 撤销
   private final Deque<Runnable> undoStack = new LinkedList<>();
   // 重做

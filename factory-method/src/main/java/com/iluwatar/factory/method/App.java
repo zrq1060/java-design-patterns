@@ -39,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
  * creating objects ({@link Blacksmith#manufactureWeapon}). The concrete subclasses (
  * {@link OrcBlacksmith}, {@link ElfBlacksmith}) then override the method to produce objects of
  * their liking.
+ *
  * 在这个工厂方法示例中，我们有一个接口({@link Blacksmith}) 和一个创建对象({@link Blacksmith#manufactureWeapon})的方法。然后具体的
  * 子类{@link OrcBlacksmith}, {@link ElfBlacksmith})重写该方法以生成自己喜欢的对象。
  */

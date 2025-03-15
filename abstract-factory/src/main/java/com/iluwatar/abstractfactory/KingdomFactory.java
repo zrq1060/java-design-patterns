@@ -28,10 +28,12 @@ package com.iluwatar.abstractfactory;
  * KingdomFactory factory interface.
  */
 public interface KingdomFactory {
+
   // 城堡
   Castle createCastle();
 
   King createKing();
+
   // 军队
   Army createArmy();
 

@@ -53,6 +53,7 @@ public class DwarvenGoldmineFacade {
   public void startNewDay() {
     makeActions(workers, DwarvenMineWorker.Action.WAKE_UP, DwarvenMineWorker.Action.GO_TO_MINE);
   }
+
   // 挖黄金
   public void digOutGold() {
     makeActions(workers, DwarvenMineWorker.Action.WORK);
