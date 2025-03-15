@@ -31,6 +31,11 @@ Wikipedia says
 
 > The hexagonal architecture, or ports and adapters architecture, is an architectural pattern used in software design. It aims at creating loosely coupled application components that can be easily connected to their software environment by means of ports and adapters. This makes components exchangeable at any level and facilitates test automation.
 
+Architecture diagram
+
+![Hexagonal Architecture Diagram](./etc/hexagonal-architecture-diagram.png)
+
+
 ## Programmatic Example of Hexagonal Architecture Pattern in Java
 
 The Hexagonal Architecture, also known as Ports and Adapters, is a design pattern that aims to create a loosely coupled application where the core business logic is isolated from external interfaces like databases, user interfaces, or third-party services. This allows the core application to be independent and easily testable.
@@ -180,7 +185,7 @@ Hexagonal Architecture is particularly beneficial in scenarios:
 * There is a requirement for high testability and maintainability.
 * The application should remain unaffected by changes in external interfaces.
 
-## Real-World Applications of Hexagonal Architecure Pattern in Java
+## Real-World Applications of Hexagonal Architecture Pattern in Java
 
 * Implemented extensively within enterprise applications that leverage frameworks like Spring.
 * Used in microservices architectures to maintain clear boundaries and protocols between services.
