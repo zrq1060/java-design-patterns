@@ -27,6 +27,7 @@ package com.iluwatar.builder;
 /**
  * Hero,the record class.
  */
+
 // 英雄
 public record Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
 
