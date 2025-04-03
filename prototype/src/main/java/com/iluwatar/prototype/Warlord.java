@@ -29,6 +29,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Warlord.
+ * 军阀
  */
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor

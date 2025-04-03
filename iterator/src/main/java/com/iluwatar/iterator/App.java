@@ -90,11 +90,13 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // 通过类型，演示宝箱的迭代器。
     demonstrateTreasureChestIteratorForType(RING);
     demonstrateTreasureChestIteratorForType(POTION);
     demonstrateTreasureChestIteratorForType(WEAPON);
     demonstrateTreasureChestIteratorForType(ANY);
 
+    // 演示BST迭代器
     demonstrateBstIterator();
   }
 }

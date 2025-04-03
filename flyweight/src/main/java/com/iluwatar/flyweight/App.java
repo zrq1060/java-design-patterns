@@ -49,8 +49,10 @@ public class App {
    */
   public static void main(String[] args) {
     // create the alchemist shop with the potions
+    // 创建炼金术士药水商店
     var alchemistShop = new AlchemistShop();
     // a brave visitor enters the alchemist shop and drinks all the potions
+    // 一个勇敢的游客走进炼金术士店，喝下了所有的药水
     alchemistShop.drinkPotions();
   }
 }

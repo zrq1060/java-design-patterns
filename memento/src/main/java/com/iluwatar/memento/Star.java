@@ -29,11 +29,14 @@ import lombok.Setter;
 
 /**
  * Star uses "mementos" to store and restore state.
+ * Star使用mementos来存储和恢复状态。
+ * 星星
  */
 public class Star {
 
   private StarType type;
   private int ageYears;
+  // 质量吨
   private int massTons;
 
   /**
@@ -65,6 +68,7 @@ public class Star {
     }
   }
 
+  // 获取备忘录
   StarMemento getMemento() {
     var state = new StarMementoInternal();
     state.setAgeYears(ageYears);
@@ -73,6 +77,7 @@ public class Star {
     return state;
   }
 
+  // 设置备忘录
   void setMemento(StarMemento memento) {
     var state = (StarMementoInternal) memento;
     this.type = state.getType();
@@ -87,6 +92,7 @@ public class Star {
 
   /**
    * StarMemento implementation.
+   * StarMemento实现
    */
   @Getter
   @Setter

@@ -26,12 +26,18 @@ package com.iluwatar.memento;
 
 /**
  * StarType enumeration.
+ * 星星类型
  */
 public enum StarType {
+  // 太阳
   SUN("sun"),
+  // 红巨星
   RED_GIANT("red giant"),
+  // 白矮星
   WHITE_DWARF("white dwarf"),
+  // 超新星
   SUPERNOVA("supernova"),
+  // 死星
   DEAD("dead star");
 
   private final String title;

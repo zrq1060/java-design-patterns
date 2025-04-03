@@ -31,6 +31,7 @@ import java.util.List;
 /**
  * OrcKing makes requests that are handled by the chain.
  * 兽人王的请求由链处理。
+ * 兽人国王
  */
 public class OrcKing {
 
@@ -41,6 +42,7 @@ public class OrcKing {
   }
 
   private void buildChain() {
+    // 有一个兽人指挥官、兽人军官、兽人士兵
     handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
   }
 
@@ -48,6 +50,7 @@ public class OrcKing {
    * Handle request by the chain.
    */
   public void makeRequest(Request req) {
+    // 先排序，后过滤符合条件的，最后获取第一个，然后进行处理。
     handlers
         .stream()
         .sorted(Comparator.comparing(RequestHandler::getPriority))

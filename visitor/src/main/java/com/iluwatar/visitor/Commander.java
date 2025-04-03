@@ -40,7 +40,9 @@ public class Commander extends Unit {
    */
   @Override
   public void accept(UnitVisitor visitor) {
+    // 处理当前visitor（访问者）的visit（访问）自己
     visitor.visit(this);
+    // 处理所有children的当前visitor（访问者）的visit（访问）children
     super.accept(visitor);
   }
 

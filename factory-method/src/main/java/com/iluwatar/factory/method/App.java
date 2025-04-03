@@ -54,12 +54,14 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 兽人铁匠
     Blacksmith blacksmith = new OrcBlacksmith();
     Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
     LOGGER.info(MANUFACTURED, blacksmith, weapon);
     weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
     LOGGER.info(MANUFACTURED, blacksmith, weapon);
 
+    // 精灵铁匠
     blacksmith = new ElfBlacksmith();
     weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
     LOGGER.info(MANUFACTURED, blacksmith, weapon);

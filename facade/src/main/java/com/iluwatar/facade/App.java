@@ -45,6 +45,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // 矮人金矿
     var facade = new DwarvenGoldmineFacade();
     facade.startNewDay();
     facade.digOutGold();

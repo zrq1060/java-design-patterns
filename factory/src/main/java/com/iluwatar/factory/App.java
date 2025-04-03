@@ -45,6 +45,7 @@ public class App {
    */
   public static void main(String[] args) {
     LOGGER.info("The alchemist begins his work.");
+    // 硬币工厂获取硬币
     var coin1 = CoinFactory.getCoin(CoinType.COPPER);
     var coin2 = CoinFactory.getCoin(CoinType.GOLD);
     LOGGER.info(coin1.getDescription());

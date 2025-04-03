@@ -50,18 +50,23 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // 精灵英雄工厂
     var factory = new HeroFactoryImpl(
         new ElfMage("cooking"),
         new ElfWarlord("cleaning"),
         new ElfBeast("protecting")
     );
+    // 法师
     var mage = factory.createMage();
+    // 军阀
     var warlord = factory.createWarlord();
+    // 野兽
     var beast = factory.createBeast();
     LOGGER.info(mage.toString());
     LOGGER.info(warlord.toString());
     LOGGER.info(beast.toString());
 
+    // 兽人英雄工厂
     factory = new HeroFactoryImpl(
         new OrcMage("axe"),
         new OrcWarlord("sword"),

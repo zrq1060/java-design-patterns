@@ -32,6 +32,7 @@ public interface RequestHandler {
 
   boolean canHandleRequest(Request req);
 
+  // 获取优先级
   int getPriority();
 
   void handle(Request req);

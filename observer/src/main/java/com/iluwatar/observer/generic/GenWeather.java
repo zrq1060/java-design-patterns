@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * GWeather.
+ * 泛型-天气
  */
 @Slf4j
 public class GenWeather extends Observable<GenWeather, Race, WeatherType> {

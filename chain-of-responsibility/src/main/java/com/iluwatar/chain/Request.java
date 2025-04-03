@@ -29,6 +29,7 @@ import lombok.Getter;
 
 /**
  * Request.
+ * 请求
  */
 @Getter
 public class Request {

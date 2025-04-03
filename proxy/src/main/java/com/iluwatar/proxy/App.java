@@ -49,6 +49,7 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 巫师塔代理，传入象牙塔（巫师塔子类）
     var proxy = new WizardTowerProxy(new IvoryTower());
     proxy.enter(new Wizard("Red wizard"));
     proxy.enter(new Wizard("White wizard"));

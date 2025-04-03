@@ -43,8 +43,11 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 长毛象
     var mammoth = new Mammoth();
+    // 观察当前状态（内部操作的是状态的观察）
     mammoth.observe();
+    // 改变愤怒的状态、和平的状态。（内部操作的是状态的进入）
     mammoth.timePasses();
     mammoth.observe();
     mammoth.timePasses();

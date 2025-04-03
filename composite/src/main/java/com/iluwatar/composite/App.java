@@ -50,6 +50,7 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 消息由句子组成，句子由单词组成，单词由字符组成。
     var messenger = new Messenger();
 
     LOGGER.info("Message from the orcs: ");

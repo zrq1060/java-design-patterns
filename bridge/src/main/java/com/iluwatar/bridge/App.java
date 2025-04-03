@@ -51,12 +51,15 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // 武器加魔法
+    // 骑士得到一把施了魔法的剑。
     LOGGER.info("The knight receives an enchanted sword.");
     var enchantedSword = new Sword(new SoulEatingEnchantment());
     enchantedSword.wield();
     enchantedSword.swing();
     enchantedSword.unwield();
 
+    // 女武神得到一把施了魔法的锤子。
     LOGGER.info("The valkyrie receives an enchanted hammer.");
     var hammer = new Hammer(new FlyingEnchantment());
     hammer.wield();

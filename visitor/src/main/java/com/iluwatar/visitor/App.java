@@ -43,6 +43,7 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 指挥官，包含多个中士，每个中士包含多个士兵。
     var commander = new Commander(
         new Sergeant(new Soldier(), new Soldier(), new Soldier()),
         new Sergeant(new Soldier(), new Soldier(), new Soldier())

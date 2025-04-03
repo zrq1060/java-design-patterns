@@ -41,8 +41,10 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // 半身人小偷，指定偷窃方法（打了就跑方法）。
     var thief = new HalflingThief(new HitAndRunMethod());
     thief.steal();
+    // 改变方法（精细的方法）
     thief.changeMethod(new SubtleMethod());
     thief.steal();
   }

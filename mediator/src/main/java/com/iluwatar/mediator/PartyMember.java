@@ -26,6 +26,7 @@ package com.iluwatar.mediator;
 
 /**
  * Interface for party members interacting with {@link Party}.
+ * 聚会成员沟通接口
  */
 public interface PartyMember {
 

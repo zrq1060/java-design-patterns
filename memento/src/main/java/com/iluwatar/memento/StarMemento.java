@@ -26,6 +26,7 @@ package com.iluwatar.memento;
 
 /**
  * External interface to memento.
+ * 备忘录的外部接口
  */
 public interface StarMemento {
 

@@ -84,36 +84,42 @@ public class App {
   public static void main(String[] args) {
 
     // eagerly initialized singleton
+    // 饿汉式单例
     var ivoryTower1 = IvoryTower.getInstance();
     var ivoryTower2 = IvoryTower.getInstance();
     LOGGER.info("ivoryTower1={}", ivoryTower1);
     LOGGER.info("ivoryTower2={}", ivoryTower2);
 
     // lazily initialized singleton
+    // 懒汉式单例
     var threadSafeIvoryTower1 = ThreadSafeLazyLoadedIvoryTower.getInstance();
     var threadSafeIvoryTower2 = ThreadSafeLazyLoadedIvoryTower.getInstance();
     LOGGER.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
     LOGGER.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
 
     // enum singleton
+    // 枚举单例
     var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
     var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
     LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
     LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
 
     // double-checked locking
+    // 双if检查单例
     var dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
     LOGGER.info(dcl1.toString());
     var dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
     LOGGER.info(dcl2.toString());
 
     // initialize on demand holder idiom
+    // 内部类单例
     var demandHolderIdiom = InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom.toString());
     var demandHolderIdiom2 = InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom2.toString());
 
     // initialize singleton using Bill Pugh's implementation
+    // 内部类单例-Bill Pugh
     var billPughSingleton = BillPughImplementation.getInstance();
     LOGGER.info(billPughSingleton.toString());
     var billPughSingleton2 = BillPughImplementation.getInstance();

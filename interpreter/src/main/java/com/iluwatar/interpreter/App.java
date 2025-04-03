@@ -98,6 +98,7 @@ public class App {
 
   /**
    * Checks whether the input parameter is an operator.
+   * 检查输入参数是否为操作符。
    * @param s input string
    * @return true if the input parameter is an operator
    */
@@ -107,6 +108,7 @@ public class App {
 
   /**
    * Returns correct expression based on the parameters.
+   * 根据参数返回正确的表达式Expression。
    * @param s input string
    * @param left expression
    * @param right expression

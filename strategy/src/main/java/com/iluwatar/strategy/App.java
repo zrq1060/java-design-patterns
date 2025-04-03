@@ -56,20 +56,26 @@ public class App {
    */
   public static void main(String[] args) {
     // GoF Strategy pattern
-    // 绿龙在前面
+    // GoF战略模式
+
+    // 前方发现绿龙！
     LOGGER.info(GREEN_DRAGON_SPOTTED);
+    // 使用近战的策略
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
-    // 红龙出现
+    // 红龙出现了。
     LOGGER.info(RED_DRAGON_EMERGES);
+    // 使用炮弹的策略
     dragonSlayer.changeStrategy(new ProjectileStrategy());
     dragonSlayer.goToBattle();
-    // 黑龙在你前面着陆
+    // 黑龙在你之前登陆。
     LOGGER.info(BLACK_DRAGON_LANDS);
+    // 使用咒语的策略
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
 
     // Java 8 functional implementation Strategy pattern
+    // Java 8功能实现策略模式（功能同上）
     LOGGER.info(GREEN_DRAGON_SPOTTED);
     dragonSlayer = new DragonSlayer(
         () -> LOGGER.info("With your Excalibur you sever the dragon's head!"));
@@ -84,6 +90,7 @@ public class App {
     dragonSlayer.goToBattle();
 
     // Java 8 lambda implementation with enum Strategy pattern
+    // Java 8 lambda实现与enum策略模式（功能同上）
     LOGGER.info(GREEN_DRAGON_SPOTTED);
     dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MELEE_STRATEGY);
     dragonSlayer.goToBattle();

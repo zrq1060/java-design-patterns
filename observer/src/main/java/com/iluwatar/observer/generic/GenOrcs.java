@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * GOrcs.
- * G兽人
+ * 泛型-兽人
  */
 @Slf4j
 public class GenOrcs implements Race {

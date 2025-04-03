@@ -52,26 +52,34 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // 巫师
     var wizard = new Wizard();
+    // 地精
     var goblin = new Goblin();
 
     goblin.printStatus();
 
+    // 巫师施展法术，让地精改变大小。
     wizard.castSpell(goblin::changeSize);
     goblin.printStatus();
 
+    // 巫师施展法术，让地精改变可见。
     wizard.castSpell(goblin::changeVisibility);
     goblin.printStatus();
 
+    // 巫师撤销最后一个法术
     wizard.undoLastSpell();
     goblin.printStatus();
 
+    // 巫师撤销最后一个法术
     wizard.undoLastSpell();
     goblin.printStatus();
 
+    // 重做最后一个法术
     wizard.redoLastSpell();
     goblin.printStatus();
 
+    // 重做最后一个法术
     wizard.redoLastSpell();
     goblin.printStatus();
   }

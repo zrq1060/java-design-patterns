@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrcOfficer implements RequestHandler {
   @Override
   public boolean canHandleRequest(Request req) {
+    // 兽人军官只负责折磨囚犯
     return req.getRequestType() == RequestType.TORTURE_PRISONER;
   }
 

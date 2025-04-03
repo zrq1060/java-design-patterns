@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract base class for party members.
+ * 聚会成员的凑抽象基类
  */
 @Slf4j
 public abstract class PartyMemberBase implements PartyMember {

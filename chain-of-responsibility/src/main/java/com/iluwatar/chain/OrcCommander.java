@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrcCommander implements RequestHandler {
   @Override
   public boolean canHandleRequest(Request req) {
+    // 兽人指挥官只负保卫城堡
     return req.getRequestType() == RequestType.DEFEND_CASTLE;
   }
 

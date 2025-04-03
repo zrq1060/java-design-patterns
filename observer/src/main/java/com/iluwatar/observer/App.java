@@ -53,6 +53,7 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 兽人、霍比特人，观察天气。
     var weather = new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
@@ -63,6 +64,7 @@ public class App {
     weather.timePasses();
 
     // Generic observer inspired by Java Generics and Collections by Naftalin & Wadler
+    // 泛型观察者的灵感来自于Java泛型和集合，由Naftalin & Wadler编写
     LOGGER.info("--Running generic version--");
     var genericWeather = new GenWeather();
     genericWeather.addObserver(new GenOrcs());

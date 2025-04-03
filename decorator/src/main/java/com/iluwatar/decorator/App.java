@@ -48,6 +48,7 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 简单巨魔
     // simple troll
     LOGGER.info("A simple looking troll approaches.");
     var troll = new SimpleTroll();
@@ -55,6 +56,7 @@ public class App {
     troll.fleeBattle();
     LOGGER.info("Simple troll power: {}.\n", troll.getAttackPower());
 
+    // 通过添加一个装饰器来改变简单巨魔的行为
     // change the behavior of the simple troll by adding a decorator
     LOGGER.info("A troll with huge club surprises you.");
     var clubbedTroll = new ClubbedTroll(troll);

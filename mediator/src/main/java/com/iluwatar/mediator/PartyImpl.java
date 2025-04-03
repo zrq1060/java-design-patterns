@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * Party implementation.
+ * 聚会接口实现类
  */
 public class PartyImpl implements Party {
 

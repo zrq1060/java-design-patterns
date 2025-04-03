@@ -32,6 +32,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+// 王国
 public class Kingdom {
 
   private King king;
@@ -55,7 +56,9 @@ public class Kingdom {
      */
     public static KingdomFactory makeFactory(KingdomType type) {
       return switch (type) {
+        // 精灵
         case ELF -> new ElfKingdomFactory();
+        // 兽人
         case ORC -> new OrcKingdomFactory();
       };
     }

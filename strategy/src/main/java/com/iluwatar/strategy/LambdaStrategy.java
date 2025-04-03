@@ -28,18 +28,27 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Lambda implementation for enum strategy pattern.
+ * 枚举策略模式的Lambda实现。
  */
 @Slf4j
 public class LambdaStrategy {
 
   /**
    * Enum to demonstrate strategy pattern.
+   * 枚举来演示策略模式。
    */
   public enum Strategy implements DragonSlayingStrategy {
+    // 说明：由于此Strategy实现DragonSlayingStrategy，所以此execute()执行的时候，
+    // 会执行枚举构造方法内的dragonSlayingStrategy的execute()，又因为是此接口是一个方法，
+    // 所以可以使用Lambda表达式来简化实现，即会执行其内部的打印。
+
+    // 近战策略（打印信息同：MeleeStrategy）
     MELEE_STRATEGY(() -> LOGGER.info(
         "With your Excalibur you sever the dragon's head!")),
+    // 炮弹的策略（打印信息同：ProjectileStrategy）
     PROJECTILE_STRATEGY(() -> LOGGER.info(
         "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
+    // 咒语的策略（打印信息同：SpellStrategy）
     SPELL_STRATEGY(() -> LOGGER.info(
         "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
 

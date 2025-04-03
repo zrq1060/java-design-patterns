@@ -26,14 +26,17 @@ package com.iluwatar.prototype;
 
 /**
  * Interface for the factory class.
- * 英雄
+ * 英雄工场
  */
 public interface HeroFactory {
 
+  // 法师
   Mage createMage();
 
+  // 军阀
   Warlord createWarlord();
 
+  // 野兽
   Beast createBeast();
 
 }

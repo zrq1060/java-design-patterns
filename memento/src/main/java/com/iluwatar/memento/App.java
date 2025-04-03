@@ -58,6 +58,7 @@ public class App {
   public static void main(String[] args) {
     var states = new Stack<StarMemento>();
 
+    // 星星依次升级，然后回退。
     var star = new Star(StarType.SUN, 10000000, 500000);
     LOGGER.info(star.toString());
     states.add(star.getMemento());

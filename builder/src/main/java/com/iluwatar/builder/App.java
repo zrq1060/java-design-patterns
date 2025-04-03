@@ -66,20 +66,29 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // 法师英雄
     var mage = new Hero.Builder(Profession.MAGE, "Riobard")
+        // 头发颜色（黑色）
         .withHairColor(HairColor.BLACK)
+        // 武器（匕首）
         .withWeapon(Weapon.DAGGER)
         .build();
     LOGGER.info(mage.toString());
 
+    // 战士英雄
     var warrior = new Hero.Builder(Profession.WARRIOR, "Amberjill")
+        // 头发颜色（金发碧眼的）
         .withHairColor(HairColor.BLOND)
+        // 头发类型（长花）、护甲（锁子甲）、武器（剑）
         .withHairType(HairType.LONG_CURLY).withArmor(Armor.CHAIN_MAIL).withWeapon(Weapon.SWORD)
         .build();
     LOGGER.info(warrior.toString());
 
+    // 小偷英雄
     var thief = new Hero.Builder(Profession.THIEF, "Desmond")
+        // 头发类型（秃头）
         .withHairType(HairType.BALD)
+        // 武器（弓）
         .withWeapon(Weapon.BOW)
         .build();
     LOGGER.info(thief.toString());

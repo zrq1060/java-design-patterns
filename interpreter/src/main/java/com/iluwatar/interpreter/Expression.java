@@ -30,6 +30,7 @@ package com.iluwatar.interpreter;
  */
 public abstract class Expression {
 
+  // 解释
   public abstract int interpret();
 
   @Override

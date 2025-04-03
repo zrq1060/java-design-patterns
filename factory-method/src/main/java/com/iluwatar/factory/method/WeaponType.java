@@ -36,6 +36,7 @@ public enum WeaponType {
   SHORT_SWORD("short sword"),
   // 矛
   SPEAR("spear"),
+  // 斧
   AXE("axe"),
   UNDEFINED("");
 
